@@ -2,8 +2,10 @@ import axios from 'axios';
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
-export function storeExpense(expenseData) {
-  axios.post(`${apiUrl}/expenses.json`, expenseData);
+export async function storeExpense(expenseData) {
+  const response = await axios.post(`${apiUrl}/expenses.json`, expenseData);
+  const id = response.data.name;
+  return id;
 }
 
 export async function fetchExpenses() {
